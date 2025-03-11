@@ -17,20 +17,27 @@ const Art = () => {
     return (
       <>
       <Cover color = "#80ecff" title = {dart} picture={dartCover}/>
+
       <div className = "container">
       <h1>PIXEL CHARACTERS</h1>
-        <div className = "row">
-          <img src={mune} className="pc1"></img>
-          <img src={munesheet} className="pc2"></img>
+        <div className = "containerart">
+
+          <div className = "row">
+            <img src={mune} className="pc1"></img>
+            <img src={munesheet} className="pc2"></img>
+          </div>
+
+          <div className = "row">
+            <img src={munewalk} className="pc1"></img>
+            <img src={munewalksheet} className="pc2"></img>
+          </div>
+
+          <div className = "row">
+            <img src={sho} className="pc1"></img>
+            <img src={shosheet} className="pc2"></img>
+          </div>
         </div>
-        <div className = "row">
-          <img src={munewalk} className="pc1"></img>
-          <img src={munewalksheet} className="pc2"></img>
-        </div>
-        <div className = "row">
-          <img src={sho} className="pc1"></img>
-          <img src={shosheet} className="pc2"></img>
-        </div>
+
       </div>
     </>
     );

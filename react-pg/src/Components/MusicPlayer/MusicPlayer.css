@@ -1,28 +1,18 @@
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .music-player {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #D3D3D3	;
   color: black;
   text-align: left;
   width: 250px;
-
-  background: 
-    linear-gradient(rgba(211, 211, 211, 0), rgba(211, 211, 211, 0)), 
-    url("../../assets/music/covers/bg.gif"); 
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: overlay; 
-  border-top-left-radius: 10px;
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 10px; 
-  border-bottom-right-radius: 10px; 
-
 }
 
-
 /* TITULO */
-
 .title-container {
     width:100%;
 }
@@ -38,24 +28,32 @@
   position: relative;
   width: 250px;
   height: 250px; 
+  padding: 10px;
+  background: rgb(247, 183, 183);
 }
 
 .cover {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
   object-fit: cover; 
+  border: 2px solid black;
+}
+
+.cover.playing {
+  animation: spin 5s linear infinite; 
 }
 
 /* WAVEFORM */
 
 .waveform {
     width: 100%;
-    height: 52px;
-    background: #292929 ;
+    height: 70px;
+    background: black ;
     background-size: 50%;
+    border-top: 2px solid black;
   }
   
-
 /* CONTROLES */
 
 .controles-container {
@@ -65,6 +63,8 @@
     width: 100%;
     position: relative;
     padding: 0px 15px 0px 0px;
+    height: 70px;
+    border-bottom: 2px solid rgb(255, 71, 71);
 }
   
 .play-button,
@@ -80,6 +80,7 @@ cursor: pointer;
 border: 2px solid black;
 box-shadow: 2px 2px 0px black;
 transition: transform 0.1s ease, box-shadow 0.1s ease;
+
 }
 
 .play-button.active,

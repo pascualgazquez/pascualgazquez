@@ -16,15 +16,17 @@ const Projects = () => {
         captionImage={art} 
         bgColor="rgba(0, 0, 0, 0.7)" 
         link="/#/art"
+        onClick={() => window.scrollTo(0, 0)}
       />
-      {/* 
+       
       <Project 
         image={musicImg} 
         captionImage={music} 
         bgColor="rgba(0, 0, 0, 0.7)"
         link="/#/music" 
+        onClick={() => window.scrollTo(0, 0)}
       />
-      */}
+      
     </div>
   )
 }

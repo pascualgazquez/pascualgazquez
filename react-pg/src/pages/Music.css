@@ -1,25 +1,64 @@
-/* Apply shadow to all elements and transition for smooth click effect */
+.musicdescription {
+  text-align: center;
+}
+
+.music-container {
+  max-width: 800px;
+  width: 100%;
+
+  background-color: lightcoral;
+  border: 2px solid black;
+  border-radius: 10px 10px 10px 0px;
+
+  margin: 50px auto; /* Center the container horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center children horizontally */
+  justify-content: center; /* Center children vertically if needed */
+
+  margin-bottom: 250px ;
+}
+
+/* COLOR......................................... */
+
+.color-container-top {
+  padding: 10px;
+}
+
+.color-container-bottom {
+  padding: 10px;
+}
+
+/* JUKEBOX......................................... */
+
 .jukebox-container {
+
   display: flex;
   justify-content: center;
   width: 100%;
   height: auto;
-  margin-top: 50px;
-  margin-bottom: 100px;
-
 }
 
-/* Categories Window */
+/* IZQUIERDA .................................... */
+
+.music-player-container {
+  justify-content: left;
+}
+
+/* DERECHA .................................... */
+
 .categories-window {
-  width: 50%;
-  max-width: 500px;
+  padding-top:31px;
+  justify-content: right;
+  width: 100%;
+  border-left:2px solid rgb(255, 71, 71);
 }
 
 /* Tabs */
+
 .tabs {
   font-size: 1.2em;
   background-color: transparent;
-
   margin: 0;
 }
 
@@ -29,10 +68,10 @@
   background: none;
   font-weight: bold;
   background-color: transparent;
-  color: gray;
+  color: black;
   padding: 10px;
   margin: 0px;
-
+  border-radius: 10px 10px 0px 0px;
 
 }
 
@@ -42,8 +81,8 @@
 
 .tabs .active {
   background-color: white;
-
   color: black;
+
 }
 
 /* Category Content */
@@ -52,9 +91,10 @@
   flex-direction: column;
   background-color: white;
   padding: 10px;
+  border-bottom: 2px solid rgb(255, 71, 71);
+  padding-bottom: 20px;
 }
 
-/* Track Row - Individual tracks */
 .track-row {
   background-color: white;
   border: 2px solid white;
@@ -69,16 +109,9 @@
   background: lightgray;
 }
 
-/* Active state when the song is selected */
 .track-row.active {
-  border: 2px solid lightgrey;
+  border: 2px solid rgb(255, 71, 71);
   border-radius: 10px;
-  box-shadow: 0px 0px 1px black;
-}
-
-/* Music Player */
-.music-player-container {
-  display: flex;
-  justify-content: left;
+  background-color: rgb(255, 208, 208);
 }
 

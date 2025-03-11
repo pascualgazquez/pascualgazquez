@@ -63,11 +63,21 @@ const Music = () => {
   return (
     <>
       <Cover color="#fabebe" title={music} picture={musicCover} />
-      <p className="stext2">Select a track and give it a listen!</p>
+      <p className="musicdescription">
+        <>
+        This is a collection of songs I've made for different projects.
+        <br/>
+        You can select songs from the different {" "} 
+        <span style={{fontWeight: "bold"}}> 
+        categories </span> 
+        <br/>
+        Select a track and give it a listen!
+        </>
+      </p>
 
+      <div className= "music-container">
 
-      
-      <div className="jukebox-container">
+        <div className="jukebox-container">
 
          {/* IZQ */}
          <div className="music-player-container">
@@ -78,40 +88,48 @@ const Music = () => {
             track={currentTrack.track}
             color={currentTrack.color}
           />
-        </div>
-
-
-        {/* DERECHA */}
-        <div className="categories-window">
-          <div className="tabs">
-            {categoryKeys.map((category) => (
-              <button
-                key={category}
-                className={activeTab === category ? "active" : ""}
-                onClick={() => setActiveTab(category)}
-              >
-                {category}
-              </button>
-            ))}
           </div>
 
-          <div className="category-content">
-            {tracksData[activeTab].length > 0 ? (
-              tracksData[activeTab].map((track, index) => (
+          {/* DERECHA */}
+          <div className="categories-window">
+
+            
+            <div className="tabs">
+              {categoryKeys.map((category) => (
                 <button
-                  key={index}
-                  className={`track-row ${track.track === currentTrack.track ? "active" : ""}`}
-                  onClick={() => handleSongClick(track)}
+                  key={category}
+                  className={activeTab === category ? "active" : ""}
+                  onClick={() => setActiveTab(category)}
                 >
-                  {track.title}
+                  {category}
                 </button>
-              ))
-            ) : (
-              <p>No tracks yet...</p>
-            )}
+              ))}
+            </div>
+            
+            <div className="category-content">
+              {tracksData[activeTab].length > 0 ? (
+                tracksData[activeTab].map((track, index) => (
+                  <button
+                    key={index}
+                    className={`track-row ${track.track === currentTrack.track ? "active" : ""}`}
+                    onClick={() => handleSongClick(track)}
+                  >
+                    {track.title}
+                  </button>
+                ))
+              ) : (
+                <p>No tracks yet...</p>
+              )}
+            </div>
+
+            <div className="color-container-bottom"></div>
+          
           </div>
+
         </div>
+
       </div>
+      
     </>
   );
 };

@@ -55,7 +55,7 @@ const MusicPlayer = ({ title, cover, track, color }) => {
         cursorColor: color,
         barWidth: 2,
         responsive: true,
-        height: 50,
+        height: 70,
         normalize: true,
       });
 
@@ -93,19 +93,9 @@ const MusicPlayer = ({ title, cover, track, color }) => {
 
   return (
     // 
-    <div className="music-player" style={{ backgroundColor: lightenColor(color, 50) }}>
-
-      <div className="title-container">
-        <h3 className="title">{title}</h3>
-      </div>
-  
-      <div className="cover-container">
-        <img src={cover || defaultPic} alt={title} className="cover" />
-      </div>
-
-      <div ref={waveformRef} className="waveform"></div>
-
-      {/* PLAY Y VOLUMEN*/ }
+    <div className="music-player">
+      
+       {/* PLAY Y VOLUMEN*/ }
 
       <div className="controles-container">
 
@@ -143,6 +133,16 @@ const MusicPlayer = ({ title, cover, track, color }) => {
         </div>
 
       </div>
+
+      <div className="cover-container">
+        <img 
+        src={cover || defaultPic} 
+        alt={title} 
+        className={`cover ${isPlaying ? "playing" : ""}`} 
+        />
+      </div>
+
+      <div ref={waveformRef} className="waveform"></div>
 
     </div>
   );
