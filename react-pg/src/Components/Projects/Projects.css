@@ -1,5 +1,5 @@
 :root {
-    --project-size: 250px;
+    --project-size: 350px;
 }
 
 .projects{
@@ -19,8 +19,8 @@
 }
 
 .project > img { 
-    width: 100%;
-    height: 100%;
+    width: var(--project-size);
+    height: var(--project-size);
     border-radius: 10px;
     display: block;
     border: 1px solid black; 
