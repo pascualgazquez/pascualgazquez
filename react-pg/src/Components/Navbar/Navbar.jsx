@@ -3,7 +3,6 @@ import './Navbar.css'
 
 import NuButton from '../NuButton/NuButton'
 
-import bg from '../../assets/navbarbg.gif'
 import logo from '../../assets/titles/logo.gif'
 
 import twitter from '../../assets/icons/twitter.svg'
@@ -98,7 +97,7 @@ const Navbar = () => {
           <NuButton
             name="GITHUB"
             color="#5c6bc0"
-            link="https://github.com/pascualgazquez"
+            link="https://github.com/pascualga"
             imgSrc={github}
             target="_blank"
           />
@@ -118,7 +117,7 @@ const Navbar = () => {
           />
         </li>
 
-        <li style={{ display: 'inline-block', width: '20px' }}></li> 
+        <li style={{ display: 'inline-block', width: '10px' }}></li> 
 
         {/* CONTACTO ............................ */}
         <li

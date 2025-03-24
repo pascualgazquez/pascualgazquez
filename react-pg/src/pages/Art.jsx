@@ -13,6 +13,7 @@ import munesheet from '../assets/art/pixelcharacters/mune.png'
 import shosheet from '../assets/art/pixelcharacters/sho.png'
 import munewalksheet from '../assets/art/pixelcharacters/mune-walk-r.png'
 
+
 const Art = () => {
     return (
       <>
