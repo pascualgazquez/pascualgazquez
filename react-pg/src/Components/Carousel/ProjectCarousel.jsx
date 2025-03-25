@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from "react";
 import "./ProjectCarousel.css"
-import NuButton from "../NuButton/NuButton.jsx";
 
 import senkai from '../../assets/carousel/senkai.gif'
 import fading from '../../assets/carousel/fading.gif'
@@ -71,25 +70,16 @@ const projects = [
 
 const ProjectCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isFading, setIsFading] = useState(false);
 
   const goPrev = () => {
     if (currentIndex > 0) {
-      setIsFading(true);
-      setTimeout(() => {
         setCurrentIndex((prev) => prev - 1);
-        setIsFading(false);
-      }, 300); // Match CSS transition duration
     }
   };
   
   const goNext = () => {
     if (currentIndex < projects.length - 1) {
-      setIsFading(true);
-      setTimeout(() => {
-        setCurrentIndex((prev) => prev + 1);
-        setIsFading(false);
-      }, 300);
+        setCurrentIndex((prev) => prev + 1);  
     }
   };
   
@@ -107,57 +97,37 @@ const ProjectCarousel = () => {
 
   return (
 
-    <div className="ccontent"> 
-
-      {/* ARRIBA */}
-      <div className="cimage">
-
+    <div className="ccontent"   style={{ "--project-color": projects[currentIndex].color }}> 
+      <div className="ccontent2">
         {/* IMAGEN */}
-        <img 
-        src={projects[currentIndex].image}
-        className={`fade ${isFading ? "fade-out" : "fade-in"}`}
-        />
-
-        {/* FLECHAS Y PUNTOS */}
-        <div className="ccontrols">
-
-        <button onClick={goPrev} disabled={currentIndex === 0} className="cprev">◀</button>
-
-          <div className="dots">
-            {projects.map((_, index) => (
-              <span key={index} className={index === currentIndex ? "dot active" : "dot"}></span>
-            ))}
-          </div>
-
-          <button onClick={goNext} disabled={currentIndex === projects.length - 1} className="cnext">▶</button>
-          
+        <div className="cimage">
+            <button onClick={goPrev} disabled={currentIndex === 0} className="cprev">🠈</button>
+            <img src={projects[currentIndex].image}/>
+            <button onClick={goNext} disabled={currentIndex === projects.length - 1} className="cnext">🠊</button>
         </div>
 
-      </div>
-      
-      {/* TEXTO */}
-      <div className="ctext">
-        <h2 className="border">{projects[currentIndex].title}</h2>
-        <h2 
-        className={`fade ${isFading ? "fade-out" : "fade-in"}`}
-        style={{ color: projects[currentIndex].color }}>
-          {projects[currentIndex].title}
-        </h2>
-        <p className={`fade ${isFading ? "fade-out" : "fade-in"}`}>{projects[currentIndex].description}</p>
-      </div>
-
-      <div className="cbutton">
+        {/* PUNTOS */}
+        <div className="dots">
+          {projects.map((_, index) => (
+            <span key={index} className={index === currentIndex ? "dot active" : "dot"}></span>
+          ))}
+        </div>
+        
+        {/* TEXTO */}
+        <div className="ctext">
+          <h2 className="border"> {projects[currentIndex].title} </h2>
+          <h2> {projects[currentIndex].title} </h2>
+          <p> {projects[currentIndex].description}</p>
+        </div>
+        
+        {/* BOTÓN */}
         <a href={projects[currentIndex].link} target="_blank" rel="noopener noreferrer">
-          <button 
-            className="check"
-            style={{ 
-              backgroundColor: projects[currentIndex].color,
+          <button className="check" style={{ 
               color: getContrastColor(projects[currentIndex].color) 
             }}
           > CHECK IT OUT! </button>
         </a>
-      </div>
-        
+      </div>  
     </div>
 
   );

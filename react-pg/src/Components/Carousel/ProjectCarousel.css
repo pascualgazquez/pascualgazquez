@@ -1,67 +1,88 @@
 .ccontent {
     display: flex;
-    flex-direction: column;
-    margin: auto; 
     align-items: center;
-    max-width: 600px;
-}
+    justify-content: center;
 
-/* IMAGEN ....................................... */
-.cimage {
-    width:100%;
-    flex: 2;
+    width: 100%;
+}
+.ccontent2 {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    overflow: hidden;
+    justify-content: center;
     position: relative;
 
-    border-bottom: 2px solid black;
-    margin-bottom:10px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.cimage {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    width: 100%;
 }
 
 .cimage img {
-    width:90%;
-    height: 400px; 
-    object-fit: cover;
-    object-position: center; 
-    border-radius: 20px;
-    border: 2px solid black; 
-}
+    flex-grow: 1;
+    width: calc(100% - 120px);
+    max-width: 680px; 
+    height: 510px; 
 
-/* CONTROLES .................................... */
-.ccontrols {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    object-fit: cover;
+    display: block;
+    
+    border: 20px solid var(--project-color); 
+    border-radius: 0px 20px 0px 20px;
 }
 
 /* FLECHAS */
-button {
-    margin:10px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    background: none;
-}
 
 .cprev, .cnext {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    font-size: 40px;
+
     color: black; 
-    font-size: 14px;
+    background: var(--project-color); 
+    border: 4px solid var(--project-color); 
+
+    transition: all 0.2s ease-in-out;
 }
 
-button:disabled {
-    opacity: 0;
-    pointer-events: none;
-    cursor: default;
+.cprev {
+    border-radius: 50% 0% 0% 50%;
+    text-align: top;
+}
+
+.cnext {
+    border-radius: 0% 50% 50% 00%;
+}
+
+.cprev:hover, .cnext:hover {
+background: transparent;
+color: var(--project-color); ; 
+box-shadow: none;
+cursor: default;
+}
+
+.cprev:disabled,
+.cnext:disabled {
+  opacity: 0;
+  cursor:0;
 }
 
 /* PUNTOS */
 .dots {
     display: flex;
+
     gap: 20px;
-    margin: 0 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .dot {
@@ -69,7 +90,6 @@ button:disabled {
     height: 14px;
     background-color: #ccc;
     border-radius: 50%;
-    display: inline-block;
 }
 
 .dot.active {
@@ -77,25 +97,24 @@ button:disabled {
 }
 
 /* TEXT ......................................... */
+
 .ctext {
-    flex: 1; 
     width:100%;
+
     display: flex;
     flex-direction: column;
-
     align-items: flex-start;
     justify-content: center; 
     text-align: left;
     position:relative;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 .ctext h2 {
     position: relative;
     font-size: 40px;
     font-weight: bold;
-    text-shadow: 0px 0px black;
+    text-shadow: 1px 1px black;
+    color: var(--project-color);
     z-index:2;
 }
 
@@ -105,52 +124,39 @@ button:disabled {
     left: 0;
     width: 100%;
     -webkit-text-stroke: 3px black; 
+    text-shadow: 2px 2px black;
     color: transparent; 
     z-index: 1; 
     white-space: nowrap; 
     pointer-events: none; 
-    padding-left: 20px;
-    padding-right: 20px;
 }
-
 
 .ctext p {
     margin: 0;
     font-size: 16px;
 }
 
-/* CHECK */
+/* CHECK ..............................................*/
 
 .check{
-    padding: 0.5rem 0.5rem;
+    width: fit-content;
+    
     font-weight: 500;
     color: black;
     border:black;
-    width: fit-content;
-    transition: all 0.1s ease-in-out;
+    background-color: var(--project-color); 
     box-shadow: 2px 2px 0px black;
-    border: none; 
-    cursor: pointer; 
     border: 2px solid black; 
+
+    padding: 0.5rem 0.5rem;
     margin-top:10px;
+
+    cursor: pointer; 
+    transition: all 0.1s ease-in-out;
+    margin-top: 20px;
 }
 
 .check:hover {
     box-shadow: none;
     transform: translate(2px, 2px);
-}
-
-/*TRANSITION*/
-.fade {
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.fade-in {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.fade-out {
-    opacity: 0;
-    transform: translateX(-10px); /* Subtle slide effect */
 }
