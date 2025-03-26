@@ -6,17 +6,17 @@ const Cover = ({color, title}) => {
     <>
       <div className="cocover" style={{ backgroundColor: color }}> </div>
       
-      <div className="cbutton">
         <a href="/">
           <button 
             className="check"
             style={{ 
               backgroundColor: "#fff",
-              color: "#000" 
+              color: "#000",
+              fontSize: "20px",
+              fontWeight: "bold"
             }}
-          > ← GO BACK </button>
+          > ⮌ </button>
         </a>
-      </div>
   </>
   )
 }

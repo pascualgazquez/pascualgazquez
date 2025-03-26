@@ -101,9 +101,13 @@ const ProjectCarousel = () => {
       <div className="ccontent2">
         {/* IMAGEN */}
         <div className="cimage">
-            <button onClick={goPrev} disabled={currentIndex === 0} className="cprev">🠈</button>
+
+            <button onClick={goPrev} disabled={currentIndex === 0} className="cprev">⮜</button>
+            <div className="cimage1">
             <img src={projects[currentIndex].image}/>
-            <button onClick={goNext} disabled={currentIndex === projects.length - 1} className="cnext">🠊</button>
+            </div>
+            <button onClick={goNext} disabled={currentIndex === projects.length - 1} className="cnext">⮞</button>
+     
         </div>
 
         {/* PUNTOS */}
@@ -115,7 +119,6 @@ const ProjectCarousel = () => {
         
         {/* TEXTO */}
         <div className="ctext">
-          <h2 className="border"> {projects[currentIndex].title} </h2>
           <h2> {projects[currentIndex].title} </h2>
           <p> {projects[currentIndex].description}</p>
         </div>

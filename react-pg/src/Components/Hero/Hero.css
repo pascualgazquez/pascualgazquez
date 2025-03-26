@@ -33,6 +33,7 @@
 .hero-container {
     display: flex;
     width: 100%;
+    max-width: 800px;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
