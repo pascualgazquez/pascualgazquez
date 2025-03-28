@@ -6,6 +6,9 @@ import senkai from '../../assets/carousel/senkai.gif'
 import fading from '../../assets/carousel/fading.gif'
 import pixel from '../../assets/carousel/pchar.gif'
 
+import arrowr from '../../assets/icons/arrowright.svg'
+import arrowl from '../../assets/icons/arrowleft.svg'
+
 const projects = [
   {
     image: pixel,
@@ -102,11 +105,15 @@ const ProjectCarousel = () => {
         {/* IMAGEN */}
         <div className="cimage">
 
-            <button onClick={goPrev} disabled={currentIndex === 0} className="cprev">⮜</button>
+            <button onClick={goPrev} disabled={currentIndex === 0} className="cprev">
+               <img src={arrowl}></img> 
+            </button>
             <div className="cimage1">
-            <img src={projects[currentIndex].image}/>
+              <img src={projects[currentIndex].image}/>
             </div>
-            <button onClick={goNext} disabled={currentIndex === projects.length - 1} className="cnext">⮞</button>
+            <button onClick={goNext} disabled={currentIndex === projects.length - 1} className="cnext">
+               <img src={arrowr}></img> 
+            </button>
      
         </div>
 

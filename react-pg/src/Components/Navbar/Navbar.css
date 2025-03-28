@@ -20,6 +20,10 @@ nav {
     z-index: 10;
 }
 
+ul {
+    min-width: 22px;
+}
+
 nav ul li {
     align-items: left;
     display: inline-flex;
