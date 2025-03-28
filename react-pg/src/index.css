@@ -32,3 +32,13 @@ a{
   text-align: center;
 }
 
+.spike {
+  background-image: url("../assets/spikedown.png");
+  image-rendering: pixelated;
+  height: 32px;
+  width: 100%;
+  margin: 0;
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  display: block;
+}
