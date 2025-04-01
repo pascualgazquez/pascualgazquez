@@ -1,117 +1,375 @@
-.musicdescription {
-  text-align: center;
+@keyframes scroll {
+  from {
+    transform: translateX(-25%);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
 
-.music-container {
-  max-width: 800px;
+/************************************************************************/
+
+.musicdescription {
+  text-align: center; 
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+/* MUSIC PLAYER ********************************************************/
+
+.musicgroup {
   width: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 33vh;
 
-  background-color: lightcoral;
-  border: 2px solid black;
-  border-radius: 10px 10px 10px 0px;
+  --c1: var(--project-color);
+  --c2: #000000;
+  --c3: #ffff9a;
+}
 
-  margin: 50px auto; /* Center the container horizontally */
+.music-player {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 50px;
+}
+
+.mus-left {
+  width: 200px; 
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center children horizontally */
-  justify-content: center; /* Center children vertically if needed */
+  transform: translate(-8px, -8px);
+  box-shadow: 
+  1px 1px 0px var(--c2),
+  2px 2px 0px var(--c2),
+  3px 3px 0px var(--c2),
+  4px 4px 0px var(--c2),
+  5px 5px 0px var(--c2),
+  6px 6px 0px var(--c2),
+  7px 7px 0px var(--c2),
+  8px 8px 0px var(--c2);
 
-  margin-bottom: 250px ;
+  border: 2px solid black;
+  
 }
 
-/* COLOR......................................... */
-
-.color-container-top {
-  padding: 10px;
-}
-
-.color-container-bottom {
-  padding: 10px;
-}
-
-/* JUKEBOX......................................... */
-
-.jukebox-container {
-
+.mus-middle {
+  width: 44px; 
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--c1);
+  transition: ease-in-out 0.1s;
+  overflow: visible;
+
+  transform: translate(-8px, -8px);
+  box-shadow: 
+  1px 1px 0px var(--c2),
+  2px 2px 0px var(--c2),
+  3px 3px 0px var(--c2),
+  4px 4px 0px var(--c2),
+  5px 5px 0px var(--c2),
+  6px 6px 0px var(--c2),
+  7px 7px 0px var(--c2),
+  8px 8px 0px var(--c2);
+
+  border-top: 2px solid black;
+}
+
+.mus-right {
+  flex-grow: 1; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  background: url("../assets/dither/3.png");
+  border-radius: 0 0 25px 0;
+  
+}
+
+/* LEFT *********************************************************************/
+
+/* IMAGEN */
+
+.cover-container {
+  width: 100%; 
+  height: auto; 
+  display: flex;
+  align-items: center;
   justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.cover-container img {
+  aspect-ratio: 1/1;
   width: 100%;
   height: auto;
+  max-height: 100%; 
+  object-fit: cover; 
+  transition: ease-in-out 0.5s;
+
 }
 
-/* IZQUIERDA .................................... */
+/* WAVE */
 
-.music-player-container {
-  justify-content: left;
+.waveform-container {
+  width: 100%;
 }
 
-/* DERECHA .................................... */
+.waveform {
+  width: 100%;
+  height: 50px;
+  background: white; 
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: center; 
+  border-top: 2px solid black;
+}
+  
+/* MIDDLE ********************************************************************/
+
+.play_button_c{
+  width: 100%;
+  height: 44px;
+
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c1);
+}
+
+.play-button {
+width: 30px;
+height: 30px;
+transform: translate(-2px, -2px);
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+background-color: transparent;
+border-radius: 50%;
+border: 2px solid var(--c2);
+box-shadow: 2px 2px 0px var(--c2);
+transition: transform 0.1s ease, box-shadow 0.1s ease;
+background: white;
+fill: var(--c2);
+
+}
+
+.play-button.active{
+transform: translate(0px, 0px);
+border: 2px solid var(--c2);
+fill: var(--c2);
+box-shadow: 0px 0px 0px var(--c2);
+background: white;
+}
+
+.play-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.volume-s {
+  appearance: slider-vertical;
+  accent-color: var(--c2);
+  width: 20px;
+  height: 190px;
+  margin-bottom:10px;
+  background: #ffffff;
+}
+
+/* RIGHT ********************************************************************/
+
+.nowplaying {
+
+  width: 100%;
+  background: var(--c1); ;
+  transition: ease-in-out 0.1s;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  transform: translate(-8px, -8px);
+  box-shadow: 
+  1px 1px 0px var(--c2),
+  2px 2px 0px var(--c2),
+  3px 3px 0px var(--c2),
+  4px 4px 0px var(--c2),
+  5px 5px 0px var(--c2),
+  6px 6px 0px var(--c2),
+  7px 7px 0px var(--c2),
+  8px 8px 0px var(--c2);
+  border: 2px solid black;
+
+}
+
+.nowplayingtext{
+  border-bottom: 1px solid var(--c2);
+}
+
+.nowplayingtext2{
+  font-style: italic;
+  animation: scroll 10s linear infinite;
+}
+
+.nowplaying p { 
+  padding-left: 4px;
+  font-size: 1em;
+  text-align: left;
+  font-weight: bold;
+  color:  var(--c2);
+}
+
+/*....................................................................*/
 
 .categories-window {
-  padding-top:31px;
-  justify-content: right;
   width: 100%;
-  border-left:2px solid rgb(255, 71, 71);
+  height:26px;
+  background: url("../assets/dither/1.png");
 }
 
 /* Tabs */
 
-.tabs {
-  font-size: 1.2em;
-  background-color: transparent;
-  margin: 0;
-}
-
 .tabs button {
   flex: 1;
   cursor: pointer;
-  background: none;
   font-weight: bold;
-  background-color: transparent;
-  color: black;
-  padding: 10px;
-  margin: 0px;
-  border-radius: 10px 10px 0px 0px;
+  color: var(--c2);
+  padding: 5px;
+  border: 0px solid transparent;
+  transition: ease-in-out 0.2s;
+  transform: translate(-8px, -8px);
+  box-shadow: 
+  1px 1px 0px var(--c2),
+  2px 2px 0px var(--c2),
+  3px 3px 0px var(--c2),
+  4px 4px 0px var(--c2),
+  5px 5px 0px var(--c2),
+  6px 6px 0px var(--c2),
+  7px 7px 0px var(--c2),
+  8px 8px 0px var(--c2);
 
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
-.tabs button:hover {
-  color: black;
+.tabs button:not(.active):hover {
+  color: var(--c1);
+  transform: translate(-6px, -6px);
+  box-shadow: 
+  1px 1px 0px var(--c2),
+  2px 2px 0px var(--c2),
+  3px 3px 0px var(--c2),
+  4px 4px 0px var(--c2),
+  5px 5px 0px var(--c2),
+  6px 6px 0px var(--c2);
 }
 
 .tabs .active {
-  background-color: white;
-  color: black;
-
+  background-color: var(--c1);
+  color: var(--c2);
+  transform: translate(-4px, -4px);
+  box-shadow: 
+  1px 1px 0px var(--c2),
+  2px 2px 0px var(--c2),
+  3px 3px 0px var(--c2),
+  4px 4px 0px var(--c2);
 }
 
 /* Category Content */
 .category-content {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  padding: 10px;
-  border-bottom: 2px solid rgb(255, 71, 71);
-  padding-bottom: 20px;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.category-content::-webkit-scrollbar {
+  width: 0px;
+}
+
+.category-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 3px;
+}
+
+.category-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 1);
 }
 
 .track-row {
-  background-color: white;
-  border: 2px solid white;
-  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 8px;
+  border: none;
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
   cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 0px 0px px black;
-  margin-bottom: 0px;
+  text-align: left;
+  border: 1px solid var(--c2);
+
+  transform: translate(-4px, -4px);
+  z-index: 5;
+  transition: ease-in-out 0.1s;
+  background: #ffffff;
+  box-shadow: 
+  1px 1px 0px var(--c2),
+  2px 2px 0px var(--c2),
+  3px 3px 0px var(--c2),
+  4px 4px 0px var(--c2);
+
 }
 
 .track-row:hover {
-  background: lightgray;
+  background: #E5E4E2;
+  transform: translate(-2px, -2px);
+  box-shadow: 1px 1px 0px var(--c2),
+  2px 2px 0px var(--c2);
 }
 
 .track-row.active {
-  border: 2px solid rgb(255, 71, 71);
-  border-radius: 10px;
-  background-color: rgb(255, 208, 208);
+  flex-grow: 1;
+  background: var(--c1);
+  color: var(--c2);
+  transform: translate(0px, 0px);
+  z-index: 2;
+  font-weight: bold;
 }
 
+/*********************************/
+
+.track-cover {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-right: auto; 
+}
+
+.track-title {
+  flex-grow: 1; 
+  text-align: center;
+}
+
+.track-link{
+  text-align: right;
+  color: white;
+  background: black;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.track-link:hover{
+  text-align: right;
+  color: white;
+  background: gray;
+  padding: 5px;
+  border-radius: 50%;
+}
