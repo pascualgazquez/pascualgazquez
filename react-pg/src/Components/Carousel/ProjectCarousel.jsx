@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ProjectCarousel.css"
 
 import senkai from '../../assets/carousel/senkai.gif'
@@ -73,6 +73,15 @@ const projects = [
 
 const ProjectCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isImageLoading, setIsImageLoading] = useState(true);
+
+  // CARGAR IMÁGENES AL PRINCIPIO PARA QUE NO LAGEE
+  useEffect(() => {
+    projects.forEach(project => {
+      const img = new Image();
+      img.src = project.image;
+    });
+  }, []);
 
   const goPrev = () => {
     if (currentIndex > 0) {
@@ -108,9 +117,21 @@ const ProjectCarousel = () => {
             <button onClick={goPrev} disabled={currentIndex === 0} className="cprev">
                <img src={arrowl}></img> 
             </button>
+
             <div className="cimage1">
-              <img src={projects[currentIndex].image}/>
+                {isImageLoading && (
+                  <div className="loader">
+                    <div className="spinner" />
+                  </div>
+                )}
+                <img
+                  src={projects[currentIndex].image}
+                  onLoad={() => setIsImageLoading(false)}
+                  style={{ display: isImageLoading ? 'none' : 'block' }}
+                  alt={projects[currentIndex].title}
+                />
             </div>
+            
             <button onClick={goNext} disabled={currentIndex === projects.length - 1} className="cnext">
                <img src={arrowr}></img> 
             </button>

@@ -12,35 +12,56 @@ import soundOn from "../assets/icons/soundon.svg";
 import soundOff from "../assets/icons/soundoff.svg";
 import defaultPic from "../assets/music/covers/default.gif";
 
-
 // covers
-import charende_c from "../assets/music/covers/endechar.jpg";
-import charcute_c from "../assets/music/covers/cutechar.jpg";
+const coversMod = import.meta.glob("../assets/music/covers/*.{png,gif}", { eager: true, import: "default" });
+const covers = {};
+for (const path in coversMod) {
+  const fileName = path.split("/").pop().replace(/\.(png|gif)$/, "");
+  covers[`${fileName}`] = coversMod[path];
+}
 
-import gamefc_c from "../assets/music/covers/games/fc.png";
-import gamesr_c from "../assets/music/covers/games/senkai.png";
-import gamecc_c from "../assets/music/covers/games/clock.png";
+// tracks game
+const trackgameMod = import.meta.glob("../assets/music/tracks/game/*.mp3", { eager: true, import: "default" });
+const tracks_game = {};
+for (const path in trackgameMod) {
+  const fileName = path.split("/").pop().replace(".mp3", "");
+  tracks_game[`${fileName}`] = trackgameMod[path];
+}
 
-// tracks
-import charende_t from "../assets/music/tracks/enderchar.mp3";
-import charcute_t from "../assets/music/tracks/cutechar.wav";
+// tracks char
+const trackcharMod = import.meta.glob("../assets/music/tracks/char/*.mp3", { eager: true, import: "default" });
+const tracks_char = {};
+for (const path in trackcharMod) {
+  const fileName = path.split("/").pop().replace(".mp3", "");
+  tracks_char[`${fileName}`] = trackcharMod[path];
+}
 
-import gamepp_t from "../assets/music/tracks/games/pondplatoon.mp3";
+// tracks place
+const trackplaceMod = import.meta.glob("../assets/music/tracks/places/*.mp3", { eager: true, import: "default" });
+const tracks_place = {};
+for (const path in trackplaceMod) {
+  const fileName = path.split("/").pop().replace(".mp3", "");
+  tracks_place[`${fileName}`] = trackplaceMod[path];
+}
 
 
 // TRACKS DATA ....................................................................................
 const tracksData = {
   Games: [
-    { title: "Fading Crown",       cover: gamefc_c,  track: gamepp_t, color: "#fa6813", link: "https://arcacrema.itch.io/fading-crown" },
-    { title: "Senkai Rules",       cover: gamesr_c,  track: gamepp_t, color: "#ffb6ff", link: "https://damaca.itch.io/senkai-rules" },
-    { title: "Clockwork Clash",    cover: gamecc_c,  track: gamepp_t, color: "#e95f5f", link: "https://damaca.itch.io/clockwork-clash" }, 
+    /*
+    { title: "Fading Crown",        cover: covers["fc"],     track: tracks_place["funk"], color: "#fa6813", link: "https://arcacrema.itch.io/fading-crown" },
+    { title: "Senkai Rules",        cover: covers["senkai"],  track: tracks_place["funk"], color: "#ffb6ff", link: "https://damaca.itch.io/senkai-rules" },
+    { title: "Clockwork Clash",     cover: covers["clock"],  track: tracks_place["funk"], color: "#e95f5f", link: "https://damaca.itch.io/clockwork-clash" }, 
+    */
   ],
   Places: [
-    
+    { title: "Beach",           cover: covers["1"],   track: tracks_place["beach"], color: "#f6d7b0" },
+    { title: "Cozy house",      cover: covers["2"],    track: tracks_place["bossa"], color: "#b3a184" },
+    { title: "Quick Funk",      cover: covers["3"],       track: tracks_place["funk"], color: "#bc95f0" },
   ],
   Characters: [
-    { title: "Endearing character",       cover: charende_c,  track: charende_t, color: "#bc95f0" },
-    { title: "Cute character",            cover: charcute_c,  track: charcute_t, color: "#0abbba" },
+    { title: "Sleepy character", cover: covers["s"],      track: tracks_char["ende"], color: "#ace4f6" },
+    { title: "Cute character",   cover: covers["cute"],   track: tracks_char["cute"], color: "#78bee7" },
   ],
   Battles: [],
 
@@ -57,46 +78,59 @@ const Music = () => {
     color: "#ccc",
   });
 
-  const [isPlaying, setIsPlaying] = useState(false); // Define isPlaying state
-  const [waveSurfer, setWaveSurfer] = useState(null); // Define waveSurfer state
-  const waveformRef = useRef(null); // Initialize waveformRef
-  const categoryKeys = Object.keys(tracksData); // Get category names dynamically
+  const [isPlaying, setIsPlaying] = useState(false); 
+  const [waveSurfer, setWaveSurfer] = useState(null); 
+  const waveformRef = useRef(null); 
+  const categoryKeys = Object.keys(tracksData); 
   const [volume, setVolume] = useState(0.5); 
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (waveformRef.current && currentTrack.track) {
       if (waveSurfer) {
-        waveSurfer.destroy(); // Ensure previous instance is removed
+        waveSurfer.destroy();
       }
-      
+  
+      setIsLoading(true); 
+      setIsPlaying(false);
+  
       const ws = WaveSurfer.create({
         container: waveformRef.current,
         waveColor: "#000",
         progressColor: currentTrack.color,
-        cursorColor: currentTrack.color*"#fff",
+        cursorColor: "#fff",
         cursorWidth: 3,
         barWidth: 2,
         responsive: true,
         height: 48,
         normalize: true,
       });
-
-      ws.load(currentTrack.track);
-      ws.setVolume(volume); 
-      setWaveSurfer(ws);
-
+  
+  
+  
+      ws.on("ready", () => {
+        setIsLoading(false); // Finish loading
+        ws.setVolume(volume);
+      });
+  
       ws.on("finish", () => {
-        setIsPlaying(false);
+        ws.stop();   // Reset position to start
+        ws.play();   // Play again
       });
 
-      return () => ws.destroy(); 
+      ws.load(currentTrack.track);
+      ws.setVolume(volume);
+      setWaveSurfer(ws);
+  
+      return () => ws.destroy();
     }
   }, [currentTrack.track]);
+  
 
-  const [activeTab, setActiveTab] = useState(categoryKeys[0]); // Default to first category
+  const [activeTab, setActiveTab] = useState(categoryKeys[0]); 
 
   const handleSongClick = (track) => {
-    if (track.track === currentTrack.track) return; // Do nothing if the same song is clicked
+    if (track.title === currentTrack.title) return;
     setCurrentTrack({ ...track, key: Date.now() });
   };
 
@@ -152,7 +186,17 @@ const Music = () => {
           
           <div className="mus-left">
             <div className="cover-container"> <img src={currentTrack.cover || defaultPic} alt="Cover" /> </div>
-            <div className="waveform-container"> <div ref={waveformRef} className="waveform"></div> </div>
+            <div className="waveform-container">
+              {isLoading && (
+                <div className="loading-overlay">
+                  <div className="spinner"></div>
+                  <div className="loading-bar">
+                    <div className="loading-bar-progress"></div>
+                  </div>
+                </div>
+              )}
+              <div ref={waveformRef} className="waveform"></div>
+            </div>
           </div>
 
           {/*....................................*/}
@@ -209,7 +253,7 @@ const Music = () => {
                   tracksData[activeTab].map((track, index) => (
                     <button
                       key={index}
-                      className={`track-row ${track.track === currentTrack.track ? "active" : ""}`}
+                      className={`track-row ${track.title === currentTrack.title ? "active" : ""}`}
                       onClick={() => handleSongClick(track)}
                     >
                       <img src={track.cover || defaultPic} alt={track.title} className="track-cover" />
