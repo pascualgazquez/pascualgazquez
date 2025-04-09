@@ -22,11 +22,13 @@
   display: flex;
   align-content: center;
   justify-content: center;
+  padding-bottom: 40px;
   margin-bottom: 33vh;
 
   --c1: var(--project-color);
   --c2: #000000;
   --c3: #ffff9a;
+  background: url("../assets/dither/4.png");
 }
 
 .music-player {
@@ -42,18 +44,7 @@
   display: flex;
   flex-direction: column;
   transform: translate(-8px, -8px);
-  box-shadow: 
-  1px 1px 0px var(--c2),
-  2px 2px 0px var(--c2),
-  3px 3px 0px var(--c2),
-  4px 4px 0px var(--c2),
-  5px 5px 0px var(--c2),
-  6px 6px 0px var(--c2),
-  7px 7px 0px var(--c2),
-  8px 8px 0px var(--c2);
-
-  border: 2px solid black;
-  
+  overflow: show;
 }
 
 .mus-middle {
@@ -67,17 +58,8 @@
   overflow: visible;
 
   transform: translate(-8px, -8px);
-  box-shadow: 
-  1px 1px 0px var(--c2),
-  2px 2px 0px var(--c2),
-  3px 3px 0px var(--c2),
-  4px 4px 0px var(--c2),
-  5px 5px 0px var(--c2),
-  6px 6px 0px var(--c2),
-  7px 7px 0px var(--c2),
-  8px 8px 0px var(--c2);
-
-  border-top: 2px solid black;
+  border: 2px solid var(--c2);
+  border-radius: 0px 0 20px 0;
 }
 
 .mus-right {
@@ -86,9 +68,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: top;
-  background: url("../assets/dither/3.png");
-  border-radius: 0 0 25px 0;
-  
+ 
 }
 
 /* LEFT *********************************************************************/
@@ -96,6 +76,7 @@
 /* IMAGEN */
 
 .cover-container {
+  padding: 10px;
   width: 100%; 
   height: auto; 
   display: flex;
@@ -103,23 +84,37 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
-  background: url("../assets/dither/1.png");
+  background-color: var(--c1);
+  border-radius: 0 50% 0 50%;
+  border: 2px solid var(--c2);
+  transform: translate(2px,2px);
+
 }
 
 .cover-container img {
+
   aspect-ratio: 1/1;
   width: 100%;
   height: auto;
   max-height: 100%; 
   object-fit: cover; 
   transition: ease-in-out 0.5s;
+  background: url("../assets/dither/1.png");
+  border-radius: 50% 50% 50% 50%;
+  border: 2px solid black;
+  overflow: show;
+  transition: transform 0.5s ease-in-out;
 
+  animation: rotateCover 5s linear infinite;
+  animation-play-state: paused;
+  transition: transform 0.3s ease-out;
 }
 
 /* WAVE */
 
 .waveform-container {
   width: 100%;
+  transform: translate(2px, 0px);
 }
 
 .waveform {
@@ -129,7 +124,8 @@
   background-repeat: repeat;
   background-size: auto;
   background-position: center; 
-  border-top: 2px solid black;
+  border-radius: 0px 0px 0px 0px;
+  border: 2px solid var(--c2);
 }
   
 /* MIDDLE ********************************************************************/
@@ -137,11 +133,9 @@
 .play_button_c{
   width: 100%;
   height: 44px;
-
   display:flex;
   align-items: center;
   justify-content: center;
-  background: var(--c1);
 }
 
 .play-button {
@@ -158,7 +152,6 @@ border: 2px solid var(--c2);
 box-shadow: 2px 2px 0px var(--c2);
 transition: transform 0.1s ease, box-shadow 0.1s ease;
 background: white;
-fill: var(--c2);
 
 }
 
@@ -195,21 +188,21 @@ background: white;
   white-space: nowrap;
   position: relative;
   transform: translate(-8px, -8px);
-  box-shadow: 
-  1px 1px 0px var(--c2),
-  2px 2px 0px var(--c2),
-  3px 3px 0px var(--c2),
-  4px 4px 0px var(--c2),
-  5px 5px 0px var(--c2),
-  6px 6px 0px var(--c2),
-  7px 7px 0px var(--c2),
-  8px 8px 0px var(--c2);
-  border: 2px solid black;
-
+  border-top: 2px solid black;
+  border-right: 2px solid black;
 }
 
-.nowplayingtext{
-  border-bottom: 1px solid var(--c2);
+.nowplaying2 {
+  margin-right: auto;
+  width: 100%;
+  background: var(--c2); ;
+  transition: ease-in-out 0.1s;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  transform: translate(-8px, -8px);
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 .nowplayingtext2{
@@ -225,12 +218,19 @@ background: white;
   color:  var(--c2);
 }
 
+.nowplaying2 p { 
+  padding-left: 4px;
+  font-size: 1em;
+  text-align: left;
+  font-weight: bold;
+  color: var(--c1);
+}
+
 /*....................................................................*/
 
 .categories-window {
   width: 100%;
   height:26px;
-  background: url("../assets/dither/1.png");
 }
 
 /* Tabs */
@@ -241,45 +241,25 @@ background: white;
   font-weight: bold;
   color: var(--c2);
   padding: 5px;
-  border: 0px solid transparent;
-  transition: ease-in-out 0.2s;
-  transform: translate(-8px, -8px);
-  box-shadow: 
-  1px 1px 0px var(--c2),
-  2px 2px 0px var(--c2),
-  3px 3px 0px var(--c2),
-  4px 4px 0px var(--c2),
-  5px 5px 0px var(--c2),
-  6px 6px 0px var(--c2),
-  7px 7px 0px var(--c2),
-  8px 8px 0px var(--c2);
-
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  transition: ease-in-out 0.1s;
+  border: 2px solid black;
+  transform: translate(-1px, -1px);
+  margin-left: 4px;
+  margin-right: 4px;
+  border-radius: 10px;
 }
 
 .tabs button:not(.active):hover {
   color: var(--c1);
-  transform: translate(-6px, -6px);
-  box-shadow: 
-  1px 1px 0px var(--c2),
-  2px 2px 0px var(--c2),
-  3px 3px 0px var(--c2),
-  4px 4px 0px var(--c2),
-  5px 5px 0px var(--c2),
-  6px 6px 0px var(--c2);
+  transform: translate(-1px, -2px);
 }
 
 .tabs .active {
-  background-color: var(--c1);
-  color: var(--c2);
-  transform: translate(-4px, -4px);
-  box-shadow: 
-  1px 1px 0px var(--c2),
-  2px 2px 0px var(--c2),
-  3px 3px 0px var(--c2),
-  4px 4px 0px var(--c2);
+  transform: translate(-1px, -11px);
+  background-color: var(--c2);
+  color: var(--c1);
+  border-top:0px;
+  border-radius: 0 0 10px 10px;
 }
 
 /* Category Content */
@@ -287,7 +267,8 @@ background: white;
   display: flex;
   flex-direction: column;
   max-height: 180px;
-  overflow-y: auto;
+  overflow-x: show;
+  margin-top: 10px;
 }
 
 .category-content::-webkit-scrollbar {
@@ -315,33 +296,26 @@ background: white;
   cursor: pointer;
   text-align: left;
   border: 1px solid var(--c2);
+  margin-left:0px;
+  margin-bottom: 8px;
 
-  transform: translate(-4px, -4px);
   z-index: 5;
   transition: ease-in-out 0.1s;
   background: #ffffff;
-  box-shadow: 
-  1px 1px 0px var(--c2),
-  2px 2px 0px var(--c2),
-  3px 3px 0px var(--c2),
-  4px 4px 0px var(--c2);
-
 }
 
 .track-row:hover {
   background: #E5E4E2;
-  transform: translate(-2px, -2px);
-  box-shadow: 1px 1px 0px var(--c2),
-  2px 2px 0px var(--c2);
+  margin-left:-2px;
 }
 
 .track-row.active {
   flex-grow: 1;
   background: var(--c1);
   color: var(--c2);
-  transform: translate(0px, 0px);
-  z-index: 2;
   font-weight: bold;
+  margin-left:-10px;
+  border-left: 0px;
 }
 
 /*********************************/
@@ -383,11 +357,6 @@ background: white;
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(4px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   z-index: 10;
 }
 
@@ -398,8 +367,8 @@ background: white;
   width: 50px;
   height: 50px;
   animation: spin 1s linear infinite;
-  margin-bottom:20px;
   transition: ease-in-out 1s;
+  transform: translate(0px,0px);
 }
 
 @keyframes spin {
@@ -412,10 +381,10 @@ background: white;
   width: 100%;
   height: 50px;
   background: darkgray;
-  border-radius: 4px;
   overflow: hidden;
   position: absolute;
   transition: ease-in-out 1s;
+  border-radius: 0 0 0 0px;
 }
 
 .loading-bar-progress {
@@ -428,4 +397,17 @@ background: white;
 @keyframes loading-progress {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
+}
+
+.cover-container img.rotating {
+  animation-play-state: running;
+}
+
+@keyframes rotateCover {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

@@ -98,8 +98,8 @@ const Music = () => {
         container: waveformRef.current,
         waveColor: "#000",
         progressColor: currentTrack.color,
-        cursorColor: "#fff",
-        cursorWidth: 3,
+        cursorColor: "#FFEA00",
+        cursorWidth: 2,
         barWidth: 2,
         responsive: true,
         height: 48,
@@ -185,7 +185,13 @@ const Music = () => {
         <div className="music-player">
           
           <div className="mus-left">
-            <div className="cover-container"> <img src={currentTrack.cover || defaultPic} alt="Cover" /> </div>
+            <div className="cover-container"> 
+            <img
+              src={currentTrack.cover || defaultPic}
+              alt="Cover"
+              className={isPlaying ? "rotating" : ""}
+            />
+            </div>
             <div className="waveform-container">
               {isLoading && (
                 <div className="loading-overlay">
@@ -232,6 +238,8 @@ const Music = () => {
           <div className="mus-right">
             <div className="nowplaying">
               <p className="nowplayingtext"> ★ NOW PLAYING</p>
+            </div>
+            <div className="nowplaying2">
               <p className="nowplayingtext2">{currentTrack.title}</p>
             </div>
  
