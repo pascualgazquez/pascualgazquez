@@ -182,6 +182,9 @@ const Music = () => {
       
       <div className="musicgroup" style={{ "--project-color": currentTrack.color, "--project-color-rgb": hexToRgb(currentTrack.color) }}>
 
+      <div className="musicbg">
+      </div>
+
         <div className="music-player">
           
           <div className="mus-left">
@@ -287,6 +290,7 @@ const Music = () => {
         </div>
 
       </div>
+
 
     </>
   );
