@@ -10,7 +10,7 @@ import playIcon from "../assets/icons/play.svg";
 import pauseIcon from "../assets/icons/pause.svg";
 import soundOn from "../assets/icons/soundon.svg";
 import soundOff from "../assets/icons/soundoff.svg";
-import defaultPic from "../assets/music/covers/default.gif";
+import defaultPic from "../assets/static.gif";
 
 // covers
 const coversMod = import.meta.glob("../assets/music/covers/*.{png,gif}", { eager: true, import: "default" });
@@ -63,7 +63,6 @@ const tracksData = {
     { title: "Sleepy character", cover: covers["s"],      track: tracks_char["ende"], color: "#ace4f6" },
     { title: "Cute character",   cover: covers["cute"],   track: tracks_char["cute"], color: "#78bee7" },
   ],
-  Battles: [],
 
 };
 //.................................................................................................
@@ -97,12 +96,12 @@ const Music = () => {
       const ws = WaveSurfer.create({
         container: waveformRef.current,
         waveColor: "#000",
-        progressColor: currentTrack.color,
+        progressColor: "#FFF",
         cursorColor: "#FFEA00",
         cursorWidth: 2,
         barWidth: 2,
         responsive: true,
-        height: 48,
+        height: 50,
         normalize: true,
       });
   
@@ -163,137 +162,147 @@ const Music = () => {
     return `${r}, ${g}, ${b}`;
   };
 
+
   //...............................................................................................
   return (
     <>
-
       <Cover color="#fabebe" title={music} picture={musicCover} />
       
-      <p className="musicdescription"> <>
+      <p className="musicdescription">
+        <>
           This is a collection of songs I've made for different projects.
           <br />
-          You can select songs from the different{" "}
-          <span style={{ fontWeight: "bold" }}>categories</span>
+          You can select songs from the different <span style={{ fontWeight: "bold" }}>categories</span>
           <br />
           Select a track and give it a listen!
-        </> </p>
-     
-      {/*..........................................................................................*/}
-      
-      <div className="musicgroup" style={{ "--project-color": currentTrack.color, "--project-color-rgb": hexToRgb(currentTrack.color) }}>
-
-      <div className="musicbg">
-      </div>
-
-        <div className="music-player">
-          
-          <div className="mus-left">
-            <div className="cover-container"> 
-            <img
-              src={currentTrack.cover || defaultPic}
-              alt="Cover"
-              className={isPlaying ? "rotating" : ""}
-            />
-            </div>
-            <div className="waveform-container">
-              {isLoading && (
-                <div className="loading-overlay">
-                  <div className="spinner"></div>
-                  <div className="loading-bar">
-                    <div className="loading-bar-progress"></div>
-                  </div>
+        </>
+      </p>
+  
+      <div
+        className="musicgroup"
+        style={{
+          "--project-color": currentTrack.color,
+          "--project-color-rgb": hexToRgb(currentTrack.color),
+        }}
+      >
+        <div className="music-top">
+          <div className="waveform-container">
+            {isLoading && (
+              <div className="loading-overlay">
+                <div className="spinner"></div>
+                <div className="loading-bar">
+                  <div className="loading-bar-progress"></div>
                 </div>
-              )}
-              <div ref={waveformRef} className="waveform"></div>
-            </div>
-          </div>
-
-          {/*....................................*/}
-
-          <div className="mus-middle">
-            <div className="play_button_c">
-              <button onClick={togglePlay} className={`play-button ${isPlaying ? "active" : ""}`}>
-              {isPlaying ? (
-                <svg className="play-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 5h4v14H6zm8 0h4v14h-4z" />
-                </svg>
-              ) : (
-                <svg className="play-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              )}
-              </button>
-            </div>
-            <input
-              type="range"
-              min="0"
-              max="1"
-              step="0.01"
-              value={volume}
-              onChange={handleVolumeChange}
-              className="volume-s"
-              orient="vertical"
-            />
-          </div>
-
-          {/*....................................*/}
-
-          <div className="mus-right">
-            <div className="nowplaying">
-              <p className="nowplayingtext"> ★ NOW PLAYING</p>
-            </div>
-            <div className="nowplaying2">
-              <p className="nowplayingtext2">{currentTrack.title}</p>
-            </div>
- 
-            <div className="categories-window">
-              <div className="tabs">
-                {categoryKeys.map((category) => (
-                  <button
-                    key={category}
-                    className={activeTab === category ? "active" : ""}
-                    onClick={() => setActiveTab(category)}
-                  >
-                    {category}
-                  </button>
-                ))}
               </div>
-
-              <div className="category-content">
-                {tracksData[activeTab].length > 0 ? (
-                  tracksData[activeTab].map((track, index) => (
-                    <button
-                      key={index}
-                      className={`track-row ${track.title === currentTrack.title ? "active" : ""}`}
-                      onClick={() => handleSongClick(track)}
-                    >
-                      <img src={track.cover || defaultPic} alt={track.title} className="track-cover" />
-                      <span className="track-title">{track.title}</span>
-                      {track.link && (
-                        <a 
-                        href={track.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="track-link"
-                        onClick={(e) => e.stopPropagation()} // Stop the event from bubbling up
-                      >➜</a>
-                      )}
-                    </button>
-                  ))
-                ) : (
-                  <p>No tracks yet...</p>
-                )}
-              </div>
-            </div>
+            )}
+            <div ref={waveformRef} className="waveform"></div>
           </div>
-
         </div>
+  
+        <div className="music-player">
 
+          <div className="mus-left">
+              <div className="play_button_c">
+                <button
+                  onClick={togglePlay}
+                  className={`play-button ${isPlaying ? "active" : ""}`}
+                >
+                  {isPlaying ? (
+                    <svg className="play-icon" viewBox="0 0 24 24">
+                      <path d="M6 5h4v14H6zm8 0h4v14h-4z" />
+                    </svg>
+                  ) : (
+                    <svg className="play-icon" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+    
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={volume}
+                onChange={handleVolumeChange}
+                className="volume-s"
+              />
+          </div>
+    
+            <div className="mus-middle">
+    
+              <div className="nowplaying">
+                  <p>{activeTab} - {currentTrack.title}</p>
+              </div>
+    
+              <div className="categories-window">
+                <div className="tabs">
+                  {categoryKeys.map((category) => (
+                    <button
+                      key={category}
+                      className={activeTab === category ? "active" : ""}
+                      onClick={() => setActiveTab(category)}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+    
+                <div className="category-content">
+                  {tracksData[activeTab].length > 0 ? (
+                    tracksData[activeTab].map((track, index) => (
+                      <button
+                        key={index}
+                        className={`track-row ${track.title === currentTrack.title ? "active" : ""}`}
+                        onClick={() => handleSongClick(track)}
+                      >
+                        <img
+                          src={track.cover || defaultPic}
+                          alt={track.title}
+                          className="track-cover"
+                        />
+                        <span className="track-title">{track.title}</span>
+                        {track.link && (
+                          <a
+                            href={track.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="track-link"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            ➜
+                          </a>
+                        )}
+                      </button>
+                    ))
+                  ) : (
+                    <p>No tracks yet...</p>
+                  )}
+                </div>
+              </div>
+    
+          </div>
+
+          <div className="mus-right"></div>
+
+          <div className="mus-pic">
+            <div className="cover-container">
+              <img
+                src={currentTrack.cover || defaultPic}
+                alt="Cover"
+                className={isPlaying ? "rotating" : ""}
+              />
+            </div>
+          </div>
+  
+        </div>
+  
+        <div className="music-bottom"></div>
       </div>
-
-
     </>
   );
+  
 };
 
 export default Music;
