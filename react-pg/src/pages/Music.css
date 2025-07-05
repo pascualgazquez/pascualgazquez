@@ -7,12 +7,16 @@
   }
 }
 
+.emptyspace {
+  margin-top: 200px;
+}
+
 /************************************************************************/
 
 .musicdescription {
   text-align: center; 
   margin-bottom: 40px;
-  margin-top: 40px;
+  margin-top: 100px;
 }
 
 /* MUSIC PLAYER ********************************************************/
@@ -25,13 +29,12 @@
   justify-content: center; 
   padding-bottom: 40px;
   padding-top: 40px;
-  margin-bottom: 20vh;
   gap: 0px;
 
   --c1: var(--project-color);
   --c2: #000000;
-  --c3: #ffff9a;
-  background: url("../assets/dither/1.png");;
+  --c3: white;
+  background: lightgray;
 }
 
 .music-player {
@@ -49,7 +52,6 @@
   flex-direction: row;
   background: var(--c1);
   border-top: 20px solid var(--c1);
-  border-bottom: 20px solid var(--c1);
 }
 
 .music-top-2{
@@ -62,7 +64,7 @@
 
 .mus-left {
   width: 50px; 
-  height: 250px;
+  height: 270px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -71,6 +73,7 @@
   transition: ease-in-out 0.1s;
   z-index:5;
   border-radius: 0px 0px 0px 25px;
+  border-top: 20px solid var(--c1);
 }
 
 .mus-middle {
@@ -79,7 +82,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: top;;
-  border-radius: 0px 0px 0px 0;
+  border-radius: 0px 0px 20px 25px;
+  border-top: 20px solid var(--c1);
 }
 
 .mus-right {
@@ -144,7 +148,7 @@
   justify-content: center;
   background: url("../assets/dither/10.png"); 
   border-left: 1px solid black;
-  border-right: 1px solid gray;
+  border-right: 1px solid black;
 }
 
 .waveform {
@@ -184,7 +188,6 @@ border: 2px solid var(--c2);
 box-shadow: 2px 2px 0px var(--c2);
 transition: transform 0.1s ease, box-shadow 0.1s ease;
 background: white;
-
 }
 
 .play-button.active{
@@ -224,8 +227,10 @@ background: white;
   justify-content: center;
   overflow: hidden;
   position: relative;
-  background-color: var(--c1);
   border-radius: 0% 0% 50% 50%;
+  border-top: 20px solid var(--c1);
+
+  background-color: var(--c1);
 }
 
 .cover-container img {
@@ -235,16 +240,24 @@ background: white;
   max-height: 100%; 
   object-fit: cover; 
   transition: ease-in-out 0.5s;
-  background: url("../assets/dither/7.png");
+  background: transparent;
   border-radius: 50% 50% 50% 50%;
-  border: 1px solid black;
+  border: 1px solid var(--c2);
   overflow: show;
   transition: transform 0.5s ease-in-out;
+
+  background-image: url("../assets/dither/4t.png"); 
+  background-repeat: repeat;
+  background-size: 16px;                     
+  background-color: var(--c1);                 
+  
+  overflow: hidden;
 
   animation: rotateCover 5s linear infinite;
   animation-play-state: paused;
   transition: transform 0.3s ease-out;
 }
+
 
 /* RIGHT ********************************************************************/
 
@@ -262,7 +275,6 @@ background: white;
   color: var(--c2);
   padding: 5px;
   transition: ease-in-out 0.1s;
-  border: 2px solid black;
   margin-top:8px;
   margin-left: 8px;
   border-radius: 10px;
@@ -271,7 +283,7 @@ background: white;
 .tabs button:not(.active):hover {
   transform: translate(0px, -2px);
   color: var(--c2);
-  background-color: #E5E4E2;
+  background-color: white;
 
 }
 
@@ -279,7 +291,7 @@ background: white;
   transform: translate(0px, -8px);
   background-color: var(--c1);
   color: var(--c2);
-  border-top:0px;
+  border-top: 0px;
   border-radius: 0 0 10px 10px;
   border: 2px solid var(--c1);
 }
@@ -322,10 +334,10 @@ background: white;
 
   font-size: 12px;
   cursor: pointer;
-  border: 2px solid black;
+  border: 1px solid black;
   margin-left: 8px;
   margin-right: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
   z-index: 5;
   transition: ease-in-out 0.1s;
   background: #ffffff;
@@ -343,6 +355,7 @@ background: white;
   font-weight: bold;
   transform: translate(-10px, 0px);
   border-left: 0px;
+  border: 0px solid black;
 
 }
 

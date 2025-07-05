@@ -1,43 +1,151 @@
-.row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 600px; 
-    gap: 10px;
-    margin: 10px auto;
-    border: 2px solid gray;
-    padding: 10px;
-    border-radius: 20px;
-    background: lightgoldenrodyellow;
-  }
-  
-  .pc1 {
-    width: 15%; 
-    border: 2px solid gray;
-    background-color: darkgray;
-    padding: 10px;
-    image-rendering: pixelated;
-    border-radius: 20px;
-  }
-  
-  .pc2 {
-    width: 90%; 
-    image-rendering: pixelated;
-    border: 2px solid gray;
-    background-color: lightgray;
-    padding: 10px;
-    border-radius: 20px;
-  }
-  
-  .containerart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 800px; /* Adjust this to control the overall section width */
-    margin: 0 auto; /* Ensures centering */
-  }
-  
+.artcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.section h2 {
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  margin-top: 50px;
+}
+
+.carousel-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.carousel-window {
+  overflow-x: auto;
+  white-space: nowrap;
+  max-width: 800px;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-image: url("../assets/dither/4t.png");
+  background-repeat: repeat;
+  background-size: 16px;
+  background-color: white;
+}
+
+.carousel-window img {
+  height: 200px;
+  width: auto;
+  display: inline-block;
+  margin: 10px;
+  vertical-align: middle;
+  border-radius: 10px;
+  transition: 0.1s;
+}
+
+.carousel-window img:hover {
+  transform: scale(1.02) rotate(1deg);
+  z-index: 1;
+}
+
+.overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+/**************************************/
+
+.projcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightgrey;
+  margin-top: 100px;
+  gap: 10px;
+}
+
+.projcontainer h2 {
+  font-size: 32px;
+  transition: 0.1s;
+}
+
+.projcontainer h2:hover {
+  transform: scale(1.02) rotate(1deg);
+  z-index: 1;
+}
+
+.pcimg {
+  position: relative;
+  height: 160px;
+  width: auto;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  background-image: url("../assets/dither/4t.png");
+  background-repeat: repeat;
+  background-size: 16px;                     
+  background-color: lightgreen;         
+  overflow: visible;
+}
+
+.pcimg img {
+  height: 160px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border-radius: 4px;
+  transition: transform 0.1s ease;
+  display: block;
+  margin: 0 auto; 
+}
+
+.pcimg:hover img {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.pcrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.pcimg2 {
+  height: 80px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+  opacity: 0;
+  max-width: 0;
+  width:auto;
+  transition: max-width 0.6s ease, opacity 0.2s ease;
+  overflow: hidden;
+}
+
+.pcimg2.expanded {
+  max-width: 400px; 
+  opacity: 1;
+}
+
+.pcolumn-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease;
+}
+
+.pcolumn-content.expanded {
+  max-height: 500px; 
+}

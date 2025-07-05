@@ -4,13 +4,15 @@ import WaveSurfer from "wavesurfer.js";
 import Cover from "../Components/Cover/Cover";
 import music from "../assets/titles/music.gif";
 import musicCover from "../assets/more/music.gif";
+import spikedown from '../assets/spikedown.gif'
 
 // player
 import playIcon from "../assets/icons/play.svg";
 import pauseIcon from "../assets/icons/pause.svg";
 import soundOn from "../assets/icons/soundon.svg";
 import soundOff from "../assets/icons/soundoff.svg";
-import defaultPic from "../assets/static.gif";
+import defaultPic from "../assets/music/covers/default.gif";
+import dither1 from "../assets/dither/1.png";
 
 // covers
 const coversMod = import.meta.glob("../assets/music/covers/*.{png,gif}", { eager: true, import: "default" });
@@ -74,7 +76,7 @@ const Music = () => {
     title: "No track selected",
     cover: defaultPic,
     track: null,
-    color: "#ccc",
+    color: "#fff",
   });
 
   const [isPlaying, setIsPlaying] = useState(false); 
@@ -124,7 +126,6 @@ const Music = () => {
       return () => ws.destroy();
     }
   }, [currentTrack.track]);
-  
 
   const [activeTab, setActiveTab] = useState(categoryKeys[0]); 
 
@@ -162,11 +163,9 @@ const Music = () => {
     return `${r}, ${g}, ${b}`;
   };
 
-
   //...............................................................................................
   return (
     <>
-      <Cover color="#fabebe" title={music} picture={musicCover} />
       
       <p className="musicdescription">
         <>
@@ -178,6 +177,8 @@ const Music = () => {
         </>
       </p>
   
+      <div className="spike" style={{ backgroundImage: `url(${spikedown})`, backgroundColor: "#d4d4d4" }}></div>
+
       <div
         className="musicgroup"
         style={{
@@ -288,6 +289,7 @@ const Music = () => {
 
           <div className="mus-pic">
             <div className="cover-container">
+   
               <img
                 src={currentTrack.cover || defaultPic}
                 alt="Cover"
@@ -300,6 +302,11 @@ const Music = () => {
   
         <div className="music-bottom"></div>
       </div>
+
+      <div className="spike" style={{ backgroundImage: `url(${spikedown})`, backgroundColor: "#d4d4d4" ,transform: 'scaleY(-1)' }}></div>
+
+      <div className="emptyspace"></div>
+
     </>
   );
   
