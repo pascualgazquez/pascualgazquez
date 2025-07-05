@@ -91,7 +91,7 @@ background: transparent;
 border: 0px;
 color: var(--project-color); ; 
 box-shadow: none;
-cursor: default;
+cursor: pointer;
 }
 
 .cprev:disabled,
