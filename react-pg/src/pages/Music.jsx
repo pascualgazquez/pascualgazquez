@@ -186,6 +186,7 @@ const Music = () => {
           "--project-color-rgb": hexToRgb(currentTrack.color),
         }}
       >
+        <div className = "border-top"></div>
         <div className="music-top">
           <div className="waveform-container">
             {isLoading && (
@@ -199,7 +200,7 @@ const Music = () => {
             <div ref={waveformRef} className="waveform"></div>
           </div>
         </div>
-  
+        <div className = "border-middle"></div>
         <div className="music-player">
 
           <div className="mus-left">
@@ -258,11 +259,6 @@ const Music = () => {
                         className={`track-row ${track.title === currentTrack.title ? "active" : ""}`}
                         onClick={() => handleSongClick(track)}
                       >
-                        <img
-                          src={track.cover || defaultPic}
-                          alt={track.title}
-                          className="track-cover"
-                        />
                         <span className="track-title">{track.title}</span>
                         {track.link && (
                           <a
